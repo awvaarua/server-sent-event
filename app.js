@@ -37,6 +37,7 @@ app.get('/stream', function(req, res) {
   res.sseSend(votes);
   //console.log(res.socket._id);
   res.socket.on('close', function () {
+    console.log("Connection closed");
     var pos = connections.indexOf(res);
     if (pos > -1) connections.splice(pos, 1);
     res.end();
