@@ -34,7 +34,7 @@ function removeConnection(connection) {
 
 app.get('/stream', function(req, res) {
   res.sseSetup();
-  res.sseSend(votes);
+  //res.sseSend(votes);
   //console.log(res.socket._id);
   res.socket.on('close', function () {
     console.log("Connection closed");

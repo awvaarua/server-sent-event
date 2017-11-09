@@ -2,17 +2,24 @@ doctype html
 html
   head
     title Voting results for world peace
+    link(rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js")
   body
-    div(id="votes") Yes: 0, No: 0
-    div(id="state") Disconnected
-  script(src="//code.jquery.com/jquery-2.1.4.min.js")
   script.
     if (!!window.EventSource) {
       var source = new EventSource('/stream')
 
       source.addEventListener('message', function(e) {
-        votes = JSON.parse(e.data)
-        $("#votes").text("Yes: " + votes.yes + ", No: " + votes.no)
+        //votes = JSON.parse(e.data)
+        //$("#votes").text("Yes: " + votes.yes + ", No: " + votes.no)
+        //toastr.options.onclick = function() { alert('clicked'); }
+        toastr.options = {
+            timeOut: 0,
+            extendedTimeOut: 0,
+            onclick: function() { alert('clicked'); }
+        };
+        toastr.info('¡LogiFaq necesita ayuda!')
       }, false)
 
       source.addEventListener('open', function(e) {
