@@ -1,50 +1,14 @@
-var express = require('express')
-  , app = express()
-  , sse = require('./sse')
-
-var connections = []
-  , votes = {yes: 0, no: 0}
-
-app.engine('jade', require('jade').__express)
-app.set('view engine', 'jade')
-
-app.use(sse)
+var express = require('express');
+var app = express();
 
 app.get('/', function(req, res) {
-  res.render('vote')
-})
+  res.setHeader('Content-Type', 'application/json');
+  res.send(JSON.stringify({ a: 1 }));
+});
 
-app.get('/result', function(req, res) {
-  res.render('result')
-})
-
-app.get('/vote', function(req, res) {
-  var action = req.query.action;
-  var params = req.query.param || [];
-  for(var i = 0; i < connections.length; i++) {
-    connections[i].sseSend({action, params});
-  }
-  res.sendStatus(200)
-})
-
-function removeConnection(connection) {
-
-}
-
-app.get('/stream', function(req, res) {
-  res.sseSetup();
-  //res.sseSend(votes);
-  //console.log(res.socket._id);
-  res.socket.on('close', function () {
-    console.log("Connection closed");
-    var pos = connections.indexOf(res);
-    if (pos > -1) connections.splice(pos, 1);
-    res.end();
-  });
-  connections.push(res)
-  console.log(connections.length);
-})
+app.locals.connections = [];
+require('./app/routes')(app);
 
 app.listen(3000, function() {
   console.log('Listening on port 3000...')
-})
+});
