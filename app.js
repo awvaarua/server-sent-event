@@ -19,11 +19,10 @@ app.get('/result', function(req, res) {
 })
 
 app.get('/vote', function(req, res) {
-  if (req.query.yes === "true") votes.yes++
-  else votes.no++
-
+  var action = req.query.action;
+  var params = req.query.param || [];
   for(var i = 0; i < connections.length; i++) {
-    connections[i].sseSend(votes)
+    connections[i].sseSend({action, params});
   }
   res.sendStatus(200)
 })

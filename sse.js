@@ -4,7 +4,7 @@ module.exports = function (req, res, next) {
       'Content-Type': 'text/event-stream',
       'Cache-Control': 'no-cache',
       'Connection': 'keep-alive',
-      'Access-Control-Allow-Origin': 'http://localhost:3000', //  Domain from origin request http://back.logitravel.com
+      'Access-Control-Allow-Origin': 'http://dev.back.logitravel.com', //  Domain from origin request http://back.logitravel.com
       'Access-Control-Expose-Headers': '*',
       'Access-Control-Allow-Credentials': true
     })
