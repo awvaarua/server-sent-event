@@ -6,8 +6,7 @@ module.exports = {
       'Cache-Control': 'no-cache',
       'Connection': 'keep-alive',
       'Access-Control-Allow-Origin': '*', //  Domain from origin request http://back.logitravel.com
-      'Access-Control-Expose-Headers': '*',
-      'Access-Control-Allow-Credentials': true
+      'Access-Control-Expose-Headers': '*'
     });
     next();
   },

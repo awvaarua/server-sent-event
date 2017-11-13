@@ -4,6 +4,12 @@ var https = require('https');
 var fs = require('fs');
 var app = express();
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, custom_auth");
+  next();
+});
+
 app.use(helmet());
 
 app.get('/', function(req, res) {
@@ -22,14 +28,14 @@ app.locals.connections = [];
 
 require('./app/routes')(app);
 
+/*
 https.createServer({
   key: fs.readFileSync('/etc/letsencrypt/live/noty-system.tk/privkey.pem'),
   cert: fs.readFileSync('/etc/letsencrypt/live/noty-system.tk/cert.pem'),
   ca: fs.readFileSync('/etc/letsencrypt/live/noty-system.tk/chain.pem')
 }, app).listen(443);
+*/
 
-/*
-app.listen(80, function() {
+app.listen(3000, function() {
   console.log('Listening on port 3000..')
 });
-*/
