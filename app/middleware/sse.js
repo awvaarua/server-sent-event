@@ -5,7 +5,7 @@ module.exports = {
       'Content-Type': 'text/event-stream',
       'Cache-Control': 'no-cache',
       'Connection': 'keep-alive',
-      'Access-Control-Allow-Origin': '*', //  Domain from origin request http://back.logitravel.com
+      'Access-Control-Allow-Origin': '*',
       'Access-Control-Expose-Headers': '*'
     });
     next();

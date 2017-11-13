@@ -18,7 +18,7 @@ app.get('/', function(req, res) {
 });
 
 /*
-//	To certificate
+//	To validate certification - For https Test...
 app.get('/.well-known/acme-challenge/QVLCinHX6u3fEIx_VOuhUSRh_0KLJ5HtG23AdpzqNrE', function(req, res) {
   res.sendFile('./data', { root: __dirname });
 });
@@ -28,6 +28,7 @@ app.locals.connections = [];
 
 require('./app/routes')(app);
 
+// Lo ideal sería usar https para que la session que nos envían en la cabecera viajase encryptada
 /*
 https.createServer({
   key: fs.readFileSync('/etc/letsencrypt/live/noty-system.tk/privkey.pem'),
